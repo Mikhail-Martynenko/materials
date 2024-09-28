@@ -16,7 +16,7 @@
 
         <div class="product-list__icons">
           <SvgCart @click=""/>
-          <SvgLike @click=""/>
+          <SvgLike @click="storeFavorite.toggleFavorite(item.id)" :is-active="isFavorite"/>
         </div>
       </div>
     </div>
@@ -25,10 +25,12 @@
 
 <script setup lang="ts">
 interface Props {
-  item: Item
+  item: Item;
 }
 
-defineProps<Props>()
+const props = defineProps<Props>();
+const storeFavorite = useFavoritesStore();
+const isFavorite = computed(() => storeFavorite.favoritesArrayId.includes(props.item.id));
 </script>
 
 <style scoped>

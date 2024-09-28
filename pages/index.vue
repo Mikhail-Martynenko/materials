@@ -57,12 +57,12 @@ const filteredAndSortedItems = computed(() => {
 <style scoped>
 .product-container {
   width: 100%;
-  margin: 0 auto;
   max-width: 1496px;
+  margin: 0 auto 103px;
 }
 
 .product-container__title {
-  margin-bottom: 32px;
+  margin: 32px 0;
 }
 
 .product-container__list {
