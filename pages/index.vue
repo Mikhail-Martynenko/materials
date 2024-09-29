@@ -28,8 +28,8 @@ const selectedMaterial = ref('');
 onMounted(async () => {
   try {
     const [itemsResponse, materialsResponse] = await Promise.all([
-      fetch('/items.json'),
-      fetch('/materials.json')
+      fetch('/api/items.json'),
+      fetch('/api/materials.json')
     ]);
 
     items.value = await itemsResponse.json();
