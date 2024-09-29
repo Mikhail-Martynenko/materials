@@ -20,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import {useFilterSort} from "~/hooks/useFilterSort";
+
 const productStore = useProductStore();
 const { items, materials } = storeToRefs(productStore);
 const sortOrder = ref<'asc' | 'desc'>('asc');
@@ -27,19 +29,7 @@ const selectedMaterial = ref<string>('');
 
 onMounted(async () => await productStore.fetchData());
 
-const filteredAndSortedItems = computed<Item[]>(() => {
-  let filteredItems = items.value as Item[];
-
-  if (selectedMaterial.value) {
-    filteredItems = filteredItems.filter(material => String(material.material) === selectedMaterial.value);
-  }
-
-  return filteredItems.sort((a, b) => {
-    const priceA = a.price.current_price || 0;
-    const priceB = b.price.current_price || 0;
-    return sortOrder.value === 'asc' ? priceA - priceB : priceB - priceA;
-  });
-});
+const filteredAndSortedItems = useFilterSort(items, sortOrder, selectedMaterial);
 </script>
 
 <style scoped>
