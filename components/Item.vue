@@ -2,6 +2,7 @@
   <div class="product-list__item">
     <div class="product-list__image">
       <NuxtImg :src="item?.image?.url" :alt="item?.name" class="product-list__img"/>
+      <span v-if="item?.price?.old_price">Скидка</span>
     </div>
     <div class="product-list__info">
       <div class="product-list__code">
@@ -33,8 +34,8 @@ const props = defineProps<Props>();
 const storeFavorite = useFavoritesStore();
 const storeCart = useCartStore();
 
-const isFavorite = computed(() => storeFavorite.favoritesArrayId.includes(props.item.id));
-const isCart = computed(() => storeCart.cartArrayId.includes(props.item.id));
+const isFavorite: boolean = computed(() => storeFavorite.favoritesArrayId.includes(props.item.id));
+const isCart: boolean= computed(() => storeCart.cartArrayId.includes(props.item.id));
 </script>
 
 <style scoped>
@@ -48,7 +49,17 @@ const isCart = computed(() => storeCart.cartArrayId.includes(props.item.id));
 }
 
 .product-list__image {
+  position: relative;
   padding: 9px 49px 23px 49px;
+}
+
+.product-list__image span {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  padding: 3px 16px;
+  background: #EB5757;
+  color: white;
 }
 
 .product-list__code {
