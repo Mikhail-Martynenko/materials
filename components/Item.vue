@@ -46,6 +46,7 @@ const isCart: boolean= computed(() => storeCart.cartArrayId.includes(props.item.
   width: 336px;
   height: 352px;
   border: 1px solid #EEEEEE;
+  font-weight: 500;
 }
 
 .product-list__image {
@@ -60,6 +61,7 @@ const isCart: boolean= computed(() => storeCart.cartArrayId.includes(props.item.
   padding: 3px 16px;
   background: #EB5757;
   color: white;
+  font-weight: 400;
 }
 
 .product-list__code {
@@ -82,6 +84,7 @@ const isCart: boolean= computed(() => storeCart.cartArrayId.includes(props.item.
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 400;
 }
 
 .product-list__price {
