@@ -6,5 +6,8 @@ export default defineNuxtConfig({
   css: [
     '~/assets/styles/main.css'
   ],
-  ssr: false,
+  app: {
+    baseURL: '/list-materials/',
+    buildAssetsDir: 'assets',
+  }
 })
