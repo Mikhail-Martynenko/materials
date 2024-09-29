@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia';
 import { useLocalStorage } from '~/hooks/useLocalStorage';
 
 export const useCartStore = defineStore('cart', () => {
@@ -11,7 +10,7 @@ export const useCartStore = defineStore('cart', () => {
     function toggleCart(itemId: string) {
         const isInCart = cartArrayId.value.includes(itemId);
         if (isInCart) {
-            cartArrayId.value = cartArrayId.value.filter((id) => id !== itemId);
+            cartArrayId.value = cartArrayId.value.filter((id: string) => id !== itemId);
         } else {
             cartArrayId.value.push(itemId);
         }

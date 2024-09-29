@@ -20,27 +20,15 @@
 </template>
 
 <script setup lang="ts">
-const items = ref<Item[]>([]);
-const materials = ref<Material[]>([]);
-const sortOrder = ref('asc');
-const selectedMaterial = ref('');
+const productStore = useProductStore();
+const { items, materials } = storeToRefs(productStore);
+const sortOrder = ref<'asc' | 'desc'>('asc');
+const selectedMaterial = ref<string>('');
 
-onMounted(async () => {
-  try {
-    const [itemsResponse, materialsResponse] = await Promise.all([
-      fetch('/api/items.json'),
-      fetch('/api/materials.json')
-    ]);
+onMounted(async () => await productStore.fetchData());
 
-    items.value = await itemsResponse.json();
-    materials.value = await materialsResponse.json();
-  } catch (error) {
-    console.error("Ошибка при загрузке данных:", error);
-  }
-});
-
-const filteredAndSortedItems = computed(() => {
-  let filteredItems = items.value;
+const filteredAndSortedItems = computed<Item[]>(() => {
+  let filteredItems = items.value as Item[];
 
   if (selectedMaterial.value) {
     filteredItems = filteredItems.filter(material => String(material.material) === selectedMaterial.value);

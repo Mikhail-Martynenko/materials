@@ -1,4 +1,3 @@
-import { defineStore } from 'pinia';
 import {useLocalStorage} from "~/hooks/useLocalStorage";
 
 export const useFavoritesStore = defineStore('favorites', () => {
@@ -17,5 +16,5 @@ export const useFavoritesStore = defineStore('favorites', () => {
         saveToLocalStorage(favoritesArrayId.value, 'favorites');
     }
 
-    return  {favoritesArrayId, toggleFavorite };
+    return  { favoritesArrayId, toggleFavorite };
 })
