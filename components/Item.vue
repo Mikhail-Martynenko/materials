@@ -15,7 +15,8 @@
         </div>
 
         <div class="product-list__icons">
-          <SvgCart @click=""/>
+          <SvgCheck v-if="isCart" @click="storeCart.toggleCart(item.id)"/>
+          <SvgCart v-else @click="storeCart.toggleCart(item.id)"/>
           <SvgLike @click="storeFavorite.toggleFavorite(item.id)" :is-active="isFavorite"/>
         </div>
       </div>
@@ -30,7 +31,10 @@ interface Props {
 
 const props = defineProps<Props>();
 const storeFavorite = useFavoritesStore();
+const storeCart = useCartStore();
+
 const isFavorite = computed(() => storeFavorite.favoritesArrayId.includes(props.item.id));
+const isCart = computed(() => storeCart.cartArrayId.includes(props.item.id));
 </script>
 
 <style scoped>
@@ -90,6 +94,7 @@ const isFavorite = computed(() => storeFavorite.favoritesArrayId.includes(props.
 
 .product-list__icons {
   display: flex;
+  height: 23px;
   gap: 11px;
 }
 </style>
