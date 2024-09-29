@@ -6,9 +6,7 @@ export default defineNuxtConfig({
   css: [
     '~/assets/styles/main.css'
   ],
-  runtimeConfig: {
-    public: {
-      baseURL: process.env.BASE_URL || 'https://mikhail-martynenko.github.io/list-materials/'
-    }
-  }
+  app: {
+    baseURL: "/materials/", // "" - локально
+  },
 })

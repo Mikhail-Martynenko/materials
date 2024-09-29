@@ -4,9 +4,10 @@ export const useProductStore = defineStore('product', () => {
 
     async function fetchData() {
         try {
+
             const [itemsResponse, materialsResponse] = await Promise.all([
-                fetch('list-materials/api/items.json'),
-                fetch('list-materials/api/materials.json')
+                fetch('api/items.json'),
+                fetch('api/materials.json')
             ]);
             items.value = await itemsResponse.json();
             materials.value = await materialsResponse.json();

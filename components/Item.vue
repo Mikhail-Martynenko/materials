@@ -1,7 +1,7 @@
 <template>
   <div class="product-list__item">
     <div class="product-list__image">
-      <NuxtImg :src="item?.image?.url" :alt="item?.name" class="product-list__img"/>
+      <img :src="item?.image?.url" :alt="item?.name" class="product-list__img"/>
       <span v-if="item?.price?.old_price">Скидка</span>
     </div>
     <div class="product-list__info">
